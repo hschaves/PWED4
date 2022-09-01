@@ -11,69 +11,71 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript">
-	$(document).ready(function() {
-		$("#btnCadastro").click(function() {
-			var frmCadastro = $("#frmLogin").serialize();
-			$("#msg").html("Enviou:" + frmCadastro);
-			$.ajax({
-				url: "respondedor.jsp",
-				data: frmCadastro,
-				type: "POST",
-				success: function( data ) {
-					$("#msg").html( $("#msg").html()+"<br>Retornou:" + data);
-				}
-			});
-		});
-	});
-  </script>
+
 </head>
 <body>
 
 <div class="container">
 	<h2>Cadastro</h2>
 	<form id="frmCadastro">
-  		<div class="form-group">
-		   <div class="form-outline mb-4">
-		   		<label class="form-label" for="form6Example1">Nome</label>
-		        <input type="text" id="nome" class="form-control" />
+		   <div class="form-group mb-4">
+		   		<label class="form-label" for="nome">Nome</label>
+		        <input type="text" id="nome"  name="nome" class="form-control" />
 		        
 		    </div>
 		    
 		    <div class="form-group">
-		    	<label class="form-label" for="form6Example2">E-mail</label>
-		        <input type="email" id="email" class="form-control" />
+		    	<label class="form-label" for="email">E-mail</label>
+		        <input type="email" id="email" name="email"  class="form-control" />
 		        
 		    </div>
 		
 		  <div class="form-group">
-		  	<label class="form-label" for="form6Example3">CPF</label>
-		    <input type="text" id="cpf" class="form-control" />
+		  	<label class="form-label" for="cpf">CPF</label>
+		    <input type="text" id="cpf" name="cpf"  class="form-control" />
 		    
 		  </div>
 		
 		  <div class="form-group">
-		  	<label class="form-label" for="form6Example4">Endereço</label>
-		    <input type="text" id="endereco" class="form-control" />
+		  	<label class="form-label" for="endereco">Endereço</label>
+		    <input type="text" id="endereco"  name="endereco"  class="form-control" />
 		    
 		  </div>
 		  
 		  <div class="form-group">
-		  	<label class="form-label" for="form6Example5">Cidade</label>
-		    <input type="text" id="cidade" class="form-control" />
+		  	<label class="form-label" for="cidade">Cidade</label>
+		    <input type="text" id="cidade"  name="cidade"  class="form-control" />
 		    
 		  </div>
 		
 		  <div class="form-group">
-		  	<label class="form-label" for="form6Example6">Telefone</label>
-		    <input type="text" id="telefone" class="form-control" />
+		  	<label class="form-label" for="telefone">Telefone</label>
+		    <input type="text" id="telefone"  name="telefone"  class="form-control" />
 		  </div>
 		
-		  <button type="submit" id="btnCadastro" class="btn btn-primary btn-block mb-4">Cadastrar</button>
-		</div>
-		<div id="msg"></div>
+		  <button type="button" id="btnCadastro" class="btn btn-primary btn-block mb-4">Cadastrar</button>
+		
 	</form>
+	<div id="teste"></div>
 </div>
-
+  <script type="text/javascript">
+	$(document).ready(function() {
+		$('#btnCadastro').click(function() {
+			var frmData = $('#frmCadastro').serialize();
+			// alert(frmData);
+			$("#teste").html("Enviou:" + frmData);
+			$.ajax({
+				url: "respondedor2.jsp",
+				data: frmData,
+				type: "POST",
+				success: function( data ) {
+					// $("#teste").html( $("#teste").html()+"<br>Retornou:" + data);
+					$("#teste").html( data );
+					alert( data );
+				}
+			}); 
+		});
+	});
+  </script>
 </body>
 </html>

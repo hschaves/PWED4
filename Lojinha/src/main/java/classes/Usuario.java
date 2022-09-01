@@ -23,14 +23,13 @@ public class Usuario {
 	private String 	foto;
 	private String 	ativo;
 	
-	private String tableName	= "lojinha.usuarios"; 
+	private String tableName	= "usuarios"; 
 	private String fieldsName	= "idUsuario, email, senha, idNivelUsuario, nome, cpf, endereco, bairro, cidade, uf, cep, telefone, foto, ativo";  
 	private String fieldKey		= "idUsuario";
 	
 	private DBQuery dbQuery = new DBQuery(tableName, fieldsName, fieldKey);
 	
 	public Usuario() {
-		
 	}
 	
 	public Usuario( int idUsuario, String email, String senha, int idNivelUsuario, String nome, String cpf, String endereco, String bairro, String cidade, String uf, String cep, String telefone, String foto, String ativo) {
@@ -48,6 +47,8 @@ public class Usuario {
 		this.setTelefone(telefone);
 		this.setFoto(foto);
 		this.setAtivo(ativo);
+		
+		
 	}
 	
 	public Usuario( String email, String senha, String nome) {
@@ -61,6 +62,7 @@ public class Usuario {
 	public Usuario( String email) {
 		this.setIdUsuario(0);
 		this.setEmail(email);
+		
 	}
 	
 	public String toJson() {
@@ -124,11 +126,11 @@ public class Usuario {
 		return(temp);
 	}
 	
-	public void save() {
+	public int save() {
 		if( this.getIdUsuario() > 0 ) {
-			this.dbQuery.update(this.toArray());
+			return( this.dbQuery.update(this.toArray()));
 		}else {
-			this.dbQuery.insert(this.toArray());
+			return( this.dbQuery.insert(this.toArray()));
 		}
 	}
 	
@@ -163,6 +165,8 @@ public class Usuario {
 		
 		SendMail sendMail =  new SendMail( smtpHost,  smtpPort,  username,  password,  auth  );		
 		sendMail.send( mailFrom, mailTo, mailSubject, mailBody );
+		
+		
 		
 	}
 	
